@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us | SignStream AI{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="relative bg-[#0b0f1a] py-32 overflow-hidden">
+    <div class="absolute inset-0 z-0 text-white/5 pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-[40rem] h-[40rem] bg-accent-teal rounded-full mix-blend-multiply filter blur-[160px] opacity-10"></div>
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-5xl md:text-6xl font-black text-white mb-6">Get in <span class="gradient-text">Touch.</span></h1>
+        <p class="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">Have questions about integrating our technology? Our specialized support team is here to help you scale your accessibility.</p>
+    </div>
+</div>
+
+<div class="bg-[#080c14] py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-16">
+            <!-- Sidebar Labels -->
+            <div class="space-y-12 mb-20 lg:mb-0">
+                <div class="space-y-4">
+                    <h3 class="text-xs font-bold text-gray-500 uppercase tracking-widest">Connect with us</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center group cursor-pointer">
+                            <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mr-4 group-hover:bg-brand-500 group-hover:border-brand-500 transition-all text-gray-400 group-hover:text-white">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-bold text-gray-600 uppercase tracking-tighter">Email Support</p>
+                                <p class="text-white font-medium">support@signstream.ai</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center group cursor-pointer">
+                            <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mr-4 group-hover:bg-accent-pink group-hover:border-accent-pink transition-all text-gray-400 group-hover:text-white">
+                                <i data-lucide="phone-call" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-bold text-gray-600 uppercase tracking-tighter">Direct Line</p>
+                                <p class="text-white font-medium">+1 (555) 982-1234</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center group cursor-pointer">
+                            <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mr-4 group-hover:bg-accent-teal group-hover:border-accent-teal transition-all text-gray-400 group-hover:text-white">
+                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-bold text-gray-600 uppercase tracking-tighter">Innovation HQ</p>
+                                <p class="text-white font-medium">Tech District, SF 94103</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-8 rounded-[2rem] bg-gradient-to-br from-brand-600/10 to-accent-pink/10 border border-white/5 relative overflow-hidden group">
+                    <div class="relative z-10">
+                        <h4 class="text-white font-bold mb-3">Enterprise Sales</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-6">Looking for dedicated support and custom training modules? Speak to our experts.</p>
+                        <a href="#" class="text-brand-400 text-sm font-bold flex items-center hover:text-brand-300 transition-colors">
+                            Contact Sales <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div class="lg:col-span-2">
+                <div class="bg-gray-900/50 backdrop-blur-3xl border border-white/5 rounded-[3rem] p-10 md:p-14 shadow-2xl relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-brand-500/5 to-transparent opacity-50"></div>
+                    
+                    <form action="#" class="relative z-10 space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="space-y-2">
+                                <label class="text-[10px] font-bold text-gray-600 uppercase tracking-[0.2em] ml-1">First Name</label>
+                                <input type="text" class="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500/50 outline-none transition-all text-white placeholder-gray-700 font-medium" placeholder="Erica">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-[10px] font-bold text-gray-600 uppercase tracking-[0.2em] ml-1">Last Name</label>
+                                <input type="text" class="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500/50 outline-none transition-all text-white placeholder-gray-700 font-medium" placeholder="Chen">
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-bold text-gray-600 uppercase tracking-[0.2em] ml-1">Email Address</label>
+                            <input type="email" class="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500/50 outline-none transition-all text-white placeholder-gray-700 font-medium" placeholder="erica@organization.com">
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-bold text-gray-600 uppercase tracking-[0.2em] ml-1">Message Detail</label>
+                            <textarea rows="5" class="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500/50 outline-none transition-all text-white placeholder-gray-700 font-medium resize-none" placeholder="Tell us about your project..."></textarea>
+                        </div>
+
+                        <button class="btn-premium w-full py-5 rounded-2xl text-white font-bold text-lg shadow-2xl shadow-brand-500/30 flex items-center justify-center group">
+                            Submit Inquiry
+                            <i data-lucide="send" class="ml-3 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

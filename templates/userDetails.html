@@ -1,0 +1,255 @@
+{% extends "base.html" %}
+
+{% block title %}AI Command Center | SignStream AI{% endblock %}
+
+{% block content %}
+<!-- Dashboard Header -->
+<div class="relative bg-[#0b0f1a] py-12 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div class="flex items-center">
+                <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mr-5 text-brand-400">
+                    <i data-lucide="layout-grid" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="text-3xl font-black text-white tracking-tight">AI Command Center</h1>
+                    <p class="text-gray-500 text-sm font-medium">Manage localized detection models and dataset training</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                 <div id="connection-status" class="hidden flex items-center px-4 py-2 rounded-xl bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-bold uppercase tracking-wider">
+                     <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse mr-2"></span>
+                     Model Active
+                 </div>
+                 <button id="stop-btn" class="hidden px-5 py-2.5 rounded-xl bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white border border-red-500/20 shadow-sm transition-all text-sm font-bold flex items-center">
+                    <i data-lucide="power" class="w-4 h-4 mr-2"></i> Shutdown Camera
+                 </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Workspace -->
+<div class="bg-[#080c14] py-12 min-h-[60vh]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Stream Viewport -->
+        <div id="video-workspace" class="hidden w-full bg-gray-950 border border-white/5 rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+            <div class="grid grid-cols-1 lg:grid-cols-12">
+                <!-- Video Section -->
+                <div class="lg:col-span-8 bg-black relative flex justify-center items-center h-[500px] lg:h-[600px] border-r border-white/5">
+                    <img id="video-stream" src="" class="h-full w-auto object-contain" alt="Live Stream" />
+                    
+                    <!-- Viewport Overlays -->
+                    <div class="absolute top-6 left-6 flex space-x-3">
+                        <div class="px-3 py-1 bg-black/60 backdrop-blur-md rounded-lg text-[10px] font-bold text-white uppercase tracking-widest border border-white/10 flex items-center">
+                            <i data-lucide="shield" class="w-3 h-3 mr-2 text-brand-400"></i> Local Secure
+                        </div>
+                    </div>
+                    
+                    <div class="absolute bottom-6 right-6">
+                        <div class="px-4 py-2 bg-black/60 backdrop-blur-md rounded-xl text-xs font-bold text-gray-400 border border-white/10">
+                            FPS: <span class="text-white" id="fps-counter">32</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Controls Sidebar -->
+                <div class="lg:col-span-4 p-10 flex flex-col h-full bg-[#0b0f1a] relative">
+                    <!-- Subtle Glow -->
+                    <div class="absolute inset-0 bg-brand-600/5 filter blur-3xl opacity-50 z-0"></div>
+                    
+                    <div class="relative z-10 flex-grow flex flex-col">
+                        <!-- Detection Panel -->
+                        <div id="detect-controls" class="hidden animate-in fade-in duration-700 space-y-10">
+                            <div>
+                                <h3 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-6">Inference Result</h3>
+                                <div class="bg-[#080c14] border border-white/5 rounded-3xl p-8 text-center shadow-inner relative overflow-hidden group">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-brand-600/5 to-transparent"></div>
+                                    <p id="prediction-text" class="text-4xl font-black text-white mb-2 py-4">Wait...</p>
+                                    <div id="confidence-bar" class="w-full h-1 bg-white/5 rounded-full overflow-hidden mt-6">
+                                        <div id="confidence-fill" class="h-full bg-brand-500 w-0 transition-all duration-500"></div>
+                                    </div>
+                                    <p id="confidence-text" class="text-[10px] text-gray-600 mt-3 font-mono">CONFIDENCE: 0%</p>
+                                </div>
+                            </div>
+                            
+                            <button onclick="triggerPredict()" class="btn-premium w-full py-6 rounded-2xl text-white font-black text-xl shadow-2xl shadow-brand-500/30 flex items-center justify-center group transition-all">
+                                <span>Capture Frame</span>
+                                <i data-lucide="camera" class="ml-3 w-6 h-6 group-active:scale-90 transition-transform"></i>
+                            </button>
+                            
+                            <p class="text-[10px] text-center text-gray-600 font-medium">Position your hand inside the green ROI box for optimal detection accuracy.</p>
+                        </div>
+
+                        <!-- Training Panel -->
+                        <div id="create-controls" class="hidden animate-in fade-in duration-700 space-y-10">
+                            <div>
+                                <h3 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-6">Sampling Progress</h3>
+                                <div class="bg-[#080c14] border border-white/5 rounded-3xl p-10 text-center shadow-inner relative">
+                                    <div class="relative z-10">
+                                        <p id="capture-count" class="text-6xl font-black gradient-text mb-2">0</p>
+                                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Images Stored</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button onclick="triggerCapture()" class="w-full py-6 rounded-2xl bg-accent-pink hover:bg-pink-500 text-white font-black text-xl shadow-2xl shadow-pink-500/20 flex items-center justify-center group transition-all active:scale-95">
+                                <span>Record Sample</span>
+                                <i data-lucide="plus-circle" class="ml-3 w-6 h-6"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mode Select Cards -->
+        <div id="cards-view" class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            
+            <!-- Recognition Card -->
+            <div class="group bg-gray-900 border border-white/5 p-10 rounded-[3rem] hover:border-brand-500/30 transition-all duration-500 relative overflow-hidden shadow-2xl">
+                <div class="absolute -top-12 -right-12 w-48 h-48 bg-brand-600/10 rounded-full blur-[80px] group-hover:bg-brand-600/20 transition-all"></div>
+                
+                <div class="relative z-10 h-full flex flex-col">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mb-8 text-brand-400 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-white transition-all duration-500">
+                        <i data-lucide="maximize" class="w-8 h-8"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-white mb-4">Live Detection</h2>
+                    <p class="text-gray-500 leading-relaxed mb-10 flex-grow">
+                        Launch the real-time inference engine. Translate gestures into text streams instantly using localized neural processing.
+                    </p>
+                    <button onclick="startStream('detect')" class="btn-premium w-full py-5 rounded-2xl text-white font-bold text-lg shadow-xl shadow-brand-500/20 flex items-center justify-center transition-all">
+                        Open Detection Console
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dataset Training Card -->
+            <div class="group bg-gray-900 border border-white/5 p-10 rounded-[3rem] hover:border-accent-pink/30 transition-all duration-500 relative overflow-hidden shadow-2xl">
+                <div class="absolute -top-12 -right-12 w-48 h-48 bg-accent-pink/10 rounded-full blur-[80px] group-hover:bg-accent-pink/20 transition-all"></div>
+                
+                <div class="relative z-10 h-full flex flex-col">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mb-8 text-accent-pink group-hover:scale-110 group-hover:bg-accent-pink group-hover:text-white transition-all duration-500">
+                        <i data-lucide="database" class="w-8 h-8"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-white mb-4">Dataset Training</h2>
+                    <div class="space-y-6 flex-grow mb-10">
+                        <p class="text-gray-500 leading-relaxed">
+                            Expand your model's vocabulary. Train new signatures by capturing custom hand contours.
+                        </p>
+                        <div class="relative">
+                            <input type="text" id="signame" class="w-full px-6 py-4 bg-[#080c14] border border-white/5 rounded-2xl focus:ring-2 focus:ring-accent-pink/50 outline-none text-white placeholder-gray-700 transition-all text-sm" placeholder="Sign Label (e.g. Wave)">
+                        </div>
+                    </div>
+                    <button onclick="startStream('create')" class="w-full py-5 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-pink text-white font-bold text-lg hover:bg-accent-pink group transition-all duration-500 flex items-center justify-center">
+                        Initialize Trainer
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    let pollInterval = null;
+    let mode = null;
+
+    async function startStream(startMode) {
+        mode = startMode;
+        
+        // Hide cards, show workspace
+        document.getElementById('cards-view').classList.add('hidden');
+        document.getElementById('video-workspace').classList.remove('hidden');
+        document.getElementById('stop-btn').classList.remove('hidden');
+        document.getElementById('connection-status').classList.remove('hidden');
+
+        const vImage = document.getElementById('video-stream');
+        
+        if (mode === 'detect') {
+            document.getElementById('detect-controls').classList.remove('hidden');
+            document.getElementById('create-controls').classList.add('hidden');
+            vImage.src = "/video_feed_detect?" + new Date().getTime();
+            pollInterval = setInterval(fetchPrediction, 800);
+            
+        } else if (mode === 'create') {
+            const signLabel = document.getElementById('signame').value || 'NewGesture';
+            
+            await fetch('/api/start_create', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ signame: signLabel })
+            });
+
+            document.getElementById('create-controls').classList.remove('hidden');
+            document.getElementById('detect-controls').classList.add('hidden');
+            vImage.src = "/video_feed_create?" + new Date().getTime();
+            pollInterval = setInterval(fetchCaptureCount, 800);
+        }
+        
+        lucide.createIcons();
+    }
+
+    document.getElementById('stop-btn').addEventListener('click', async () => {
+        const vImage = document.getElementById('video-stream');
+        vImage.src = "";
+        
+        await fetch('/api/stop_camera', { method: 'POST' });
+        
+        if (pollInterval) clearInterval(pollInterval);
+        
+        // Reset UI
+        document.getElementById('video-workspace').classList.add('hidden');
+        document.getElementById('cards-view').classList.remove('hidden');
+        document.getElementById('stop-btn').classList.add('hidden');
+        document.getElementById('connection-status').classList.add('hidden');
+    });
+
+    async function triggerPredict() {
+        await fetch('/api/trigger_predict', { method: 'POST' });
+    }
+
+    async function triggerCapture() {
+        await fetch('/api/trigger_capture', { method: 'POST' });
+    }
+
+    async function fetchPrediction() {
+        try {
+            const res = await fetch('/api/get_prediction');
+            const data = await res.json();
+            
+            const predEl = document.getElementById('prediction-text');
+            const confText = document.getElementById('confidence-text');
+            const confFill = document.getElementById('confidence-fill');
+            
+            predEl.innerText = data.prediction;
+            confText.innerText = "CONFIDENCE: " + data.confidence;
+            
+            const confVal = parseFloat(data.confidence);
+            confFill.style.width = confVal + "%";
+            
+            if (confVal > 80) {
+                confFill.className = "h-full bg-green-500 transition-all duration-500";
+            } else if (confVal > 50) {
+                confFill.className = "h-full bg-brand-500 transition-all duration-500";
+            } else {
+                confFill.className = "h-full bg-red-500 transition-all duration-500";
+            }
+            
+        } catch (e) { console.error(e); }
+    }
+
+    async function fetchCaptureCount() {
+        try {
+            const res = await fetch('/api/get_capture_status');
+            const data = await res.json();
+            document.getElementById('capture-count').innerText = data.images_captured;
+        } catch (e) { console.error(e); }
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Our Mission | SignStream AI{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="relative bg-[#0b0f1a] py-32 overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <div class="absolute top-0 right-0 w-[40rem] h-[40rem] bg-brand-600 rounded-full mix-blend-multiply filter blur-[160px] opacity-10"></div>
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h1 class="text-5xl md:text-6xl font-black text-white mb-6">Our <span class="gradient-text">Mission.</span></h1>
+            <p class="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">We're on a journey to democratize digital communication for everyone, regardless of their primary language or mode of expression.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Mission Section -->
+<div class="bg-[#080c14] py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-8">
+                <div class="w-16 h-1 bg-gradient-to-r from-brand-600 to-accent-pink rounded-full mb-8"></div>
+                <h2 class="text-4xl font-bold text-white tracking-tight leading-tight">Bridging the Gap with <br/> Deep Learning.</h2>
+                <p class="text-gray-400 text-lg leading-relaxed">
+                    Communication is a fundamental human right. However, for the millions who rely on sign language, digital interfaces often present significant barriers. SignStream AI uses state-of-the-art Convolutional Neural Networks (CNN) to interpret complex hand movements in real-time.
+                </p>
+                
+                <div class="space-y-6 pt-4">
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center mr-5 flex-shrink-0 text-brand-400">
+                            <i data-lucide="eye" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold mb-1">Visual Intelligence</h4>
+                            <p class="text-gray-500 text-sm">Advanced computer vision algorithms that understand spatial depth and finger orientation.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 rounded-xl bg-accent-pink/10 flex items-center justify-center mr-5 flex-shrink-0 text-accent-pink">
+                            <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold mb-1">Adaptive Learning</h4>
+                            <p class="text-gray-500 text-sm">Our models evolve with each user, learning nuances in personal signing styles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="relative">
+                <div class="absolute inset-0 bg-gradient-to-tr from-brand-600 to-accent-pink opacity-20 blur-3xl scale-110"></div>
+                <div class="relative bg-gray-900 border border-white/5 rounded-[3rem] p-12 overflow-hidden group">
+                    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.05]"></div>
+                    <div class="relative z-10 flex flex-col items-center justify-center min-h-[400px]">
+                        <div class="w-24 h-24 mb-10 text-white/10 group-hover:text-brand-500 transition-colors duration-500">
+                            <i data-lucide="globe" class="w-full h-full"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-white text-center mb-4">Empowering <br/> Organizations Worldwide</h3>
+                        <p class="text-gray-500 text-center text-sm px-6">From healthcare to retail, we're helping teams become truly inclusive.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

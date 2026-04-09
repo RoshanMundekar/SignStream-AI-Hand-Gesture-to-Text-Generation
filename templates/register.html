@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Create Account | SignStream AI{% endblock %}
+
+{% block content %}
+<div class="relative min-h-[80vh] flex items-center justify-center p-4">
+    <!-- Animated Orbs -->
+    <div class="absolute top-[20%] right-[10%] w-[35rem] h-[35rem] bg-brand-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-10"></div>
+    <div class="absolute bottom-[20%] left-[10%] w-[35rem] h-[35rem] bg-accent-teal rounded-full mix-blend-multiply filter blur-[128px] opacity-10"></div>
+
+    <div class="relative w-full max-w-[520px] z-10 my-10">
+        <!-- Brand Logo -->
+        <div class="flex items-center justify-center mb-8 group cursor-pointer">
+            <div class="w-10 h-10 bg-gradient-to-tr from-brand-600 to-accent-pink rounded-xl flex items-center justify-center mr-3 group-hover:rotate-12 transition-transform duration-300 shadow-xl shadow-brand-500/20 text-white">
+                <i data-lucide="hand" class="w-6 h-6"></i>
+            </div>
+            <h1 class="text-2xl font-black tracking-tighter text-white">
+                Sign<span class="gradient-text">Stream</span>
+            </h1>
+        </div>
+
+        <div class="bg-gray-900 border border-white/5 p-10 md:p-12 rounded-[2.5rem] shadow-2xl relative overflow-hidden backdrop-blur-xl">
+            <!-- Content -->
+            <div class="relative z-10">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-white mb-2">Create Account</h2>
+                    <p class="text-gray-400 text-sm">Join the next generation of translation</p>
+                </div>
+
+                <form action="/register" class="space-y-5" method="POST">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div class="group">
+                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase tracking-widest ml-1" for="name">Full Name</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-400 transition-colors">
+                                    <i data-lucide="user" class="w-4 h-4"></i>
+                                </span>
+                                <input type="text" id="name" name="Name" class="w-full pl-11 pr-4 py-3.5 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500/50 transition-all outline-none text-white placeholder-gray-600 text-sm" placeholder="John Doe" required>
+                            </div>
+                        </div>
+
+                        <div class="group">
+                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase tracking-widest ml-1" for="mobileno">Phone Number</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-400 transition-colors">
+                                    <i data-lucide="phone" class="w-4 h-4"></i>
+                                </span>
+                                <input type="text" id="mobileno" name="mobileno" pattern="[0-9]{10}" minlength="10" maxlength="10" class="w-full pl-11 pr-4 py-3.5 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500/50 transition-all outline-none text-white placeholder-gray-600 text-sm" placeholder="1234567890" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group">
+                        <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase tracking-widest ml-1" for="email">Work Email</label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-400 transition-colors">
+                                <i data-lucide="mail" class="w-4 h-4"></i>
+                            </span>
+                            <input type="email" id="email" name="Email" class="w-full pl-11 pr-4 py-3.5 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500/50 transition-all outline-none text-white placeholder-gray-600 text-sm" placeholder="john@company.ai" required>
+                        </div>
+                    </div>
+
+                    <div class="group">
+                        <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase tracking-widest ml-1" for="password">Password</label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-400 transition-colors">
+                                <i data-lucide="lock" class="w-4 h-4"></i>
+                            </span>
+                            <input id="password" name="pass1" type="password" minlength="6" maxlength="20" class="w-full pl-11 pr-4 py-3.5 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500/50 transition-all outline-none text-white placeholder-gray-600 text-sm" placeholder="••••••••" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 mt-4 px-6 btn-premium text-white font-bold rounded-2xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-500/40 flex items-center justify-center group">
+                        Sign Up Now
+                        <i data-lucide="sparkles" class="w-5 h-5 ml-2 group-hover:scale-110 transition-transform"></i>
+                    </button>
+                </form>
+
+                <div class="mt-8 pt-8 border-t border-white/5 text-center">
+                    <p class="text-gray-400 text-sm">
+                        Existing member? 
+                        <a href="/" class="font-bold text-white hover:text-brand-400 transition-colors underline decoration-brand-500/50">Sign In here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,2 @@
+model_checkpoint_path: "D:\\Sushant\\Office_Projects\\office_projects_2022_2023\\036_hand_gesture_to_text_conversion\\UI\\Major Project\\TrainedModel\\GestureRecogModel.tfl"
+all_model_checkpoint_paths: "D:\\Sushant\\Office_Projects\\office_projects_2022_2023\\036_hand_gesture_to_text_conversion\\UI\\Major Project\\TrainedModel\\GestureRecogModel.tfl"

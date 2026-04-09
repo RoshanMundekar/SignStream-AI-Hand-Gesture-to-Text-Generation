@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Sign In | SignStream AI{% endblock %}
+
+{% block content %}
+<div class="relative min-h-[80vh] flex items-center justify-center p-4">
+    <!-- Animated Orbs -->
+    <div class="absolute top-[20%] left-[10%] w-[30rem] h-[30rem] bg-brand-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-10"></div>
+    <div class="absolute bottom-[20%] right-[10%] w-[30rem] h-[30rem] bg-accent-pink rounded-full mix-blend-multiply filter blur-[128px] opacity-10"></div>
+
+    <div class="relative w-full max-w-[480px] z-10 my-10">
+        <!-- Brand Logo (Optional here if navbar exists, but keeping for flair) -->
+        <div class="flex items-center justify-center mb-8 group cursor-pointer">
+            <div class="w-10 h-10 bg-gradient-to-tr from-brand-600 to-accent-pink rounded-xl flex items-center justify-center mr-3 group-hover:rotate-12 transition-transform duration-300 shadow-xl shadow-brand-500/20 text-white">
+                <i data-lucide="hand" class="w-6 h-6"></i>
+            </div>
+            <h1 class="text-2xl font-black tracking-tighter text-white">
+                Sign<span class="gradient-text">Stream</span>
+            </h1>
+        </div>
+
+        <div class="bg-gray-900 border border-white/5 p-10 md:p-12 rounded-[2.5rem] shadow-2xl relative overflow-hidden backdrop-blur-xl">
+            <!-- Content -->
+            <div class="relative z-10">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-white mb-2">Welcome Back</h2>
+                    <p class="text-gray-400 text-sm">Please enter your credentials</p>
+                </div>
+                
+                <form action="/" class="space-y-6" method="POST">
+                    {% if error %}
+                    <div class="p-4 bg-red-500/10 border border-red-500/20 rounded-2xl text-red-500 text-sm flex items-center">
+                        <i data-lucide="alert-circle" class="w-4 h-4 mr-3"></i>
+                        {{ error }}
+                    </div>
+                    {% endif %}
+                    
+                    {% if FinalMsg %}
+                    <div class="p-4 bg-green-500/10 border border-green-500/20 rounded-2xl text-green-400 text-sm flex items-center">
+                        <i data-lucide="check-circle" class="w-4 h-4 mr-3"></i>
+                        {{ FinalMsg }}
+                    </div>
+                    {% endif %}
+
+                    <div class="space-y-5">
+                        <div class="group">
+                            <label class="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-widest ml-1" for="email">Email Address</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-400 transition-colors">
+                                    <i data-lucide="mail" class="w-5 h-5"></i>
+                                </span>
+                                <input type="email" id="email" name="Email" class="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500/50 transition-all outline-none text-white placeholder-gray-600" placeholder="name@company.com" required>
+                            </div>
+                        </div>
+                        
+                        <div class="group">
+                            <label class="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-widest ml-1" for="password">Password</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-400 transition-colors">
+                                    <i data-lucide="lock" class="w-5 h-5"></i>
+                                </span>
+                                <input id="password" name="password" type="password" class="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500/50 transition-all outline-none text-white placeholder-gray-600" placeholder="••••••••" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 px-6 btn-premium text-white font-bold rounded-2xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-500/40 flex items-center justify-center group">
+                        Sign In
+                        <i data-lucide="arrow-right" class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </form>
+
+                <div class="mt-8 pt-8 border-t border-white/5 text-center">
+                    <p class="text-gray-400 text-sm">
+                        Don't have an account? 
+                        <a href="/register" class="font-bold text-white hover:text-brand-400 transition-colors underline decoration-brand-500/50">Register here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

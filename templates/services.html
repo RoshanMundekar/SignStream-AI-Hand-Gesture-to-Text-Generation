@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Capabilities | SignStream AI{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="relative bg-[#0b0f1a] py-32 overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <div class="absolute top-0 right-0 w-[40rem] h-[40rem] bg-indigo-600 rounded-full mix-blend-multiply filter blur-[160px] opacity-10"></div>
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-5xl md:text-6xl font-black text-white mb-6">Core <span class="gradient-text">Capabilities.</span></h1>
+        <p class="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">Our platform provides enterprise-grade tools for real-time gesture interpretation and dataset management.</p>
+    </div>
+</div>
+
+<div class="bg-[#080c14] py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+            
+            <!-- Service 1: Real-Time Detection -->
+            <div class="group relative bg-gray-900 border border-white/5 p-12 rounded-[3rem] hover:border-brand-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-brand-500/10">
+                <div class="absolute inset-0 bg-gradient-to-br from-brand-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div class="relative z-10">
+                    <div class="w-20 h-20 bg-brand-500/10 rounded-3xl flex items-center justify-center mb-10 text-brand-400 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-white transition-all duration-500 shadow-xl">
+                        <i data-lucide="video" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-white mb-6">Live Gesture Analysis</h3>
+                    <p class="text-gray-500 text-lg leading-relaxed mb-10">
+                        Our high-performance inference engine processes 30+ frames per second to provide sub-second translation of complex hand contours. Fully integrated background subtraction ensures accuracy even in varied lighting.
+                    </p>
+                    <ul class="space-y-4 mb-12">
+                        <li class="flex items-center text-sm text-gray-400">
+                            <i data-lucide="check" class="w-4 h-4 mr-3 text-brand-500"></i> Localized Edge Processing
+                        </li>
+                        <li class="flex items-center text-sm text-gray-400">
+                            <i data-lucide="check" class="w-4 h-4 mr-3 text-brand-500"></i> Multi-Point Hand Tracking
+                        </li>
+                        <li class="flex items-center text-sm text-gray-400">
+                            <i data-lucide="check" class="w-4 h-4 mr-3 text-brand-500"></i> Confidence Interval Scoring
+                        </li>
+                    </ul>
+                    <a href="/history" class="inline-flex items-center px-8 py-4 rounded-2xl bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 transition-all">
+                        Launch Detector <i data-lucide="external-link" class="ml-3 w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Service 2: Dataset Management -->
+            <div class="group relative bg-gray-900 border border-white/5 p-12 rounded-[3rem] hover:border-accent-pink/50 transition-all duration-500 hover:shadow-2xl hover:shadow-accent-pink/10">
+                <div class="absolute inset-0 bg-gradient-to-br from-accent-pink/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div class="relative z-10">
+                    <div class="w-20 h-20 bg-accent-pink/10 rounded-3xl flex items-center justify-center mb-10 text-accent-pink group-hover:scale-110 group-hover:bg-accent-pink group-hover:text-white transition-all duration-500 shadow-xl">
+                        <i data-lucide="plus-square" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-white mb-6">Expert Data Training</h3>
+                    <p class="text-gray-500 text-lg leading-relaxed mb-10">
+                        Organizations can build proprietary sign libraries. Easily record, label, and pre-process thousands of gesture samples in minutes through our intuitive batch capture pipeline.
+                    </p>
+                    <ul class="space-y-4 mb-12">
+                        <li class="flex items-center text-sm text-gray-400">
+                            <i data-lucide="check" class="w-4 h-4 mr-3 text-accent-pink"></i> Automated Sample Scaling
+                        </li>
+                        <li class="flex items-center text-sm text-gray-400">
+                            <i data-lucide="check" class="w-4 h-4 mr-3 text-accent-pink"></i> Batch Dataset Export
+                        </li>
+                        <li class="flex items-center text-sm text-gray-400">
+                            <i data-lucide="check" class="w-4 h-4 mr-3 text-accent-pink"></i> Real-time Capture Feedback
+                        </li>
+                    </ul>
+                    <a href="/history" class="inline-flex items-center px-8 py-4 rounded-2xl bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 transition-all">
+                        Build Dataset <i data-lucide="database" class="ml-3 w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
