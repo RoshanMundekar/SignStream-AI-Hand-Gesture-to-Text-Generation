@@ -4,6 +4,15 @@ SignStream AI is a modern, real-time hand gesture recognition platform that tran
 
 ![SignStream AI Banner](https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/hand.svg)
 
+
+---
+
+## Demo Video
+Watch here:https://drive.google.com/file/d/1LsUM8MMosxA44UfzbZ94ona_819YZ4wM/view?usp=drive_link
+
+---
+
+
 ## 🌟 Key Features
 
 - **Embedded Live Detection**: Real-time camera feed integrated directly into the browser (no more separate OpenCV popups).
